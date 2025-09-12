@@ -5,13 +5,27 @@ variable "vsphere_server"   { default = "10.0.0.120" }
 
 variable "dc_name"          { default = "DNIXX" }
 variable "esxi_host_name"   { default = "10.0.0.121" }
-variable "datastore_name"   { default = "proddata1" }
+variable "datastore_name"   { default = "proddata" }
 variable "network_name"     { default = "VM Network" }
 variable "template_path"    { default = "/DNIXX/vm/test" }
 
+
+# -------- SSH Access for Provisioner --------
+variable "ssh_user" {
+  description = "SSH username for connecting to the DNS VM"
+  type        = string
+  default     = "root"   # or cloud-user if your template uses cloud-init
+}
+
+variable "ssh_password" {
+  description = "SSH password for connecting to the DNS VM"
+  type        = string
+  sensitive   = true
+}
+
 # -------- DNS Server Config --------
-variable "dns_hostname" { default = "dns101" }
-variable "dns_ip"       { default = "10.0.0.122" }
+variable "dns_hostname" { default = "dnixxdns" }
+variable "dns_ip"       { default = "10.0.0.123" }
 variable "gateway"      { default = "10.0.0.1" }
 variable "domain_name"  { default = "dnixx.comm" }
 variable "reverse_zone" { default = "0.0.10" } # for 10.0.0.x network
@@ -24,8 +38,8 @@ variable "hosts" {
   type = map(string)
   default = {
     "prodvcenter" = "10.0.0.120"
-    "prodesxi101" = "10.0.0.121"
-    "dns101"      = "10.0.0.122"
+    "prodesx1"    = "10.0.0.121"
+    "dnixxdns"    = "10.0.0.123"
     "k8smaster1"  = "10.0.0.131"
     "k8smaster2"  = "10.0.0.132"
     "k8sworker1"  = "10.0.0.133"

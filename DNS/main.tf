@@ -46,11 +46,11 @@ resource "vsphere_virtual_machine" "dns_server" {
   resource_pool_id = data.vsphere_host.esxi.resource_pool_id
   datastore_id     = data.vsphere_datastore.ds.id
 
-  num_cpus = var.dns_cpu
-  memory   = var.dns_memory_mb
-  guest_id = data.vsphere_virtual_machine.template.guest_id
+  num_cpus  = var.dns_cpu
+  memory    = var.dns_memory_mb
+  guest_id  = data.vsphere_virtual_machine.template.guest_id
   scsi_type = data.vsphere_virtual_machine.template.scsi_type
-  firmware = "efi"
+  firmware  = "efi"
 
   network_interface {
     network_id   = data.vsphere_network.net.id
@@ -81,6 +81,14 @@ resource "vsphere_virtual_machine" "dns_server" {
     }
   }
 
+  # -------- SSH Connection --------
+  connection {
+    type     = "ssh"
+    user     = var.ssh_user
+    password = var.ssh_password
+    host     = var.dns_ip
+  }
+
   # -------- Install & Configure BIND --------
   provisioner "remote-exec" {
     inline = [
@@ -102,6 +110,7 @@ resource "vsphere_virtual_machine" "dns_server" {
   }
 }
 
+# ---------------- Output ----------------
 output "dns_server_ip" {
   value = var.dns_ip
 }
