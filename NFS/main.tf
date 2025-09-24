@@ -14,7 +14,7 @@ resource "null_resource" "nfs_setup" {
     type     = "ssh"
     host     = "10.0.0.134"
     user     = "root"
-    password = "P@ssw0rd123"
+    password = ""
     timeout  = "5m"
   }
 
