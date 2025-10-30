@@ -183,11 +183,11 @@ spec:
   - name: http
     port: 8080
     targetPort: 8080
-    nodePort: 30080
+    nodePort: 30031
   - name: introspect
     port: 8089
     targetPort: 8089
-    nodePort: 30089
+    nodePort: 30032
 ---
 apiVersion: v1
 kind: Namespace
