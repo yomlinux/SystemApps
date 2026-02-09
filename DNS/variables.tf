@@ -1,10 +1,10 @@
 # -------- vSphere Credentials --------
 variable "vsphere_user"     { default = "administrator@dnixx.comm" }
 variable "vsphere_password" { sensitive = true }
-variable "vsphere_server"   { default = "10.0.0.120" }
+variable "vsphere_server"   { default = "10.10.10.120" }
 
 variable "dc_name"          { default = "DNIXX" }
-variable "esxi_host_name"   { default = "10.0.0.121" }
+variable "esxi_host_name"   { default = "10.10.10.121" }
 variable "datastore_name"   { default = "proddata" }
 variable "network_name"     { default = "VM Network" }
 variable "template_path"    { default = "/DNIXX/vm/test" }
@@ -25,8 +25,8 @@ variable "ssh_password" {
 
 # -------- DNS Server Config --------
 variable "dns_hostname" { default = "dnixxdns" }
-variable "dns_ip"       { default = "10.0.0.123" }
-variable "gateway"      { default = "10.0.0.1" }
+variable "dns_ip"       { default = "10.10.10.123" }
+variable "gateway"      { default = "10.10.10.1" }
 variable "domain_name"  { default = "dnixx.comm" }
 variable "reverse_zone" { default = "0.0.10" } # for 10.0.0.x network
 
@@ -37,13 +37,13 @@ variable "dns_memory_mb"{ default = 4096 }
 variable "hosts" {
   type = map(string)
   default = {
-    "prodvcenter" = "10.0.0.120"
-    "prodesx1"    = "10.0.0.121"
-    "dnixxdns"    = "10.0.0.123"
-    "k8smaster1"  = "10.0.0.131"
-    "k8smaster2"  = "10.0.0.132"
-    "k8sworker1"  = "10.0.0.133"
-    "k8sworker2"  = "10.0.0.134"
-    "knfs"        = "10.0.0.135"
+    "prodvcenter" = "10.10.10.120"
+    "prodesx1"    = "10.10.10.121"
+    "dnixxdns"    = "10.10.10.123"
+    "k8smaster1"  = "10.10.10.131"
+    "k8smaster2"  = "10.10.10.132"
+    "k8sworker1"  = "10.10.10.133"
+    "k8sworker2"  = "10.10.10.134"
+    "knfs"        = "10.10.10.135"
   }
 }
